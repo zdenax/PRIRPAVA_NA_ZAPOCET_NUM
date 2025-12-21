@@ -1,4 +1,4 @@
-## Obsah (proklik na složky a soubory)
+## Obsah (proklik na složky se soubory)
 
 ### 01 – Nelineární rovnice
 - Složka: [01_nelinearni_rovnice/](01_nelinearni_rovnice/)
