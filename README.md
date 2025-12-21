@@ -2,149 +2,150 @@
 
 ## Table of Content
 1. [**Usecases**](usecases.md)
-    - [Numerical Integration](usecases.md#numerical-integration)
-    - [Linear Systems Solvers](usecases.md#linear-systems-solvers)
-    - [Matrix Decomposition](usecases.md#matrix-decomposition)
-    - [Polynomial Interpolation](usecases.md#polynomial-interpolation)
-    - [Polynomial Evaluation](usecases.md#polynomial_evaluation)
-    - [Polynomial Approximation](usecases.md#polynomial-approximation)
-    - [Root Finding](usecases.md#root-finding)
-    - [ODE Solvers](usecases.md#ode-solvers)
-    - [Nonlinear Regression](usecases.md#nonlinear-regression)
+    - [Numerická integrace](usecases.md#numerick%c3%a1-integrace)
+    - [Řešení lineárních soustav](usecases.md#re%c5%a1en%c3%ad-line%c3%a1rn%c3%adch-soustav)
+    - [Rozklad matice](usecases.md#rozklad-matice)
+    - [Polynomická interpolace](usecases.md#polynomick%c3%a1-interpolace)
+    - [Vyhodnocení polynomu](usecases.md#vyhodnocen%c3%ad-polynomu)
+    - [Aproximace a regrese](usecases.md#aproximace-a-regrese)
+    - [Hledání kořenů](usecases.md#hled%c3%a1n%c3%ad-ko%c5%99en%c5%af)
+    - [Řešení ODR](usecases.md#re%c5%a1en%c3%ad-odr)
+    - [Nelineární regrese](usecases.md#neline%c3%a1rn%c3%ad-regrese)
 2. [**Methods**](methods.md)
-    - [Midpointrule](methods.md#midpointrule)
+    - [MidpointRule](methods.md#midpointrule)
+    - [Simpson](methods.md#simpson)
+    - [SimpsonUniversal](methods.md#simpsonuniversal)
     - [Gauss](methods.md#gauss)
-    - [GaussPivot](methods.md#gausspivot)
+    - [GaussPivot](methods.md#gaussspivot)
     - [GaussLU](methods.md#gausslu)
-    - [GaussSeidel](methods.md#gaussseidel)
+    - [GaussSeidel](methods.md#gausssiedel)
     - [Jacobi](methods.md#jacobi)
-    - [LUDecompose](methods.md#ludecompose)
     - [Lagrange](methods.md#lagrange)
-    - [Vandermonde](methods.md#vandermonde)
-    - [Horner](methods.md#horner)
     - [NewtonInterpolation](methods.md#newtoninterpolation)
-    - [NewtonEvaluation](methods.md#newtonevaluation)
-    - [SimpsonRule](methods.md#simpsonrule)
-    - [Least Squares Approximation (LSA)](methods.md#least-squares-approximation-lsa)
-    - [Bisection](methods.md#bisection)
-    - [EulerStep](methods.md#eulerstep)
-    - [NonlinearFit](methods.md#nonlinearfit)
-    - [Least Squares Solution (LSS)](methods.md#least-squares-solution-lss)
+    - [Valdemort](methods.md#voldemort)
+    - [Horner](methods.md#horner)
+    - [NewtonEvaluation](methods.md#newtoneval)
+    - [MNČ](methods.md#mnc)
+    - [MNČsmall](methods.md#mncsmall)
+    - [NelineárníRegrese](methods.md#nlinearni_regrese)
+    - [Bisekce](methods.md#bisekce)
+    - [NewtonRoot](methods.md#newtonroot)
+    - [Euler](methods.md#euler)
+    - [Graphs](methods.md#graphs)
+    - [ObecnéOperace](methods.md#obecne_operace)
 3. [**Documents**](#documents)
 
 ## Quick Guide: How to Choose Numerical Methods
 
-This guide helps you quickly recognize which numerical method to use for typical computational and exam problems. It summarizes the main clues and recommended routines from the KI-NUM toolkit.
+Rychlý přehled pro správný výběr numerické metody podle typu úlohy.
 
 ---
 
-### 1. Numerical Integration
+### 1. Numerická integrace
 
-**Clues:**  
-- Integral sign (∫), area under a curve, estimate a definite integral, analyze error vs. n.
+**Znaky:**  
+- Výpočet určitého integrálu, ∫, plocha pod křivkou.
 
-**Examples:**  
-- “Compute ∫₁² (1/x) dx using Newton-Cotes, plot error.”
-
-**Recommended Methods:**  
-- `SimpsonRule`
-- `MidpointRule`
-- `TrapezoidalRule`
+**Doporučené metody:**  
+- `simpson.py`  
+- `simpson_universal.py`  
+- `midpointrule.py`
 
 ---
 
-### 2. Solving Linear Systems (Ax = b)
+### 2. Řešení lineárních soustav (Ax = b)
 
-**Clues:**  
-- Matrix equation Ax = b, "solve for x", matrix entries defined by integrals.
+**Znaky:**  
+- Matice A, vektor b, řešení x.
 
-**Examples:**  
-- “Solve Ax = b where A_ij = ∫₀¹ t^{i+j-2} dt.”
-
-**Recommended Methods:**  
-- `Gauss`
-- `GaussPivot`
-- `GaussSeidel`
-- `Jacobi`
+**Doporučené metody:**  
+- `gauss.py`  
+- `gaussspivot.py`  
+- `gausssiedel.py`  
+- `jacobi.py`
 
 ---
 
-### 3. Interpolation
+### 3. Rozklad matice
 
-**Clues:**  
-- "Find a polynomial through all data points", "interpolate", curve must pass through all given points.
+**Znaky:**  
+- Opakované řešení stejné matice, LU rozklad.
 
-**Examples:**  
-- “Fit a polynomial exactly through given data, plot result.”
-
-**Recommended Methods:**  
-- `Lagrange`
-- `NewtonInterpolation`
-- `Vandermonde`
+**Doporučené metody:**  
+- `gausslu.py`
 
 ---
 
-### 4. Approximation / Regression / Least Squares
+### 4. Polynomická interpolace
 
-**Clues:**  
-- “Best fit”, “approximate”, “regression”, “trend”, “minimize sum of squared errors”, noisy data.
+**Znaky:**  
+- Polynom procházející daty.
 
-**Examples:**  
-- “Fit a polynomial of degree 2 to experimental data.”
-
-**Recommended Methods:**  
-- `LSA` (Least Squares Approximation)
-- `LSS` (Least Squares Solution)
+**Doporučené metody:**  
+- `lagrange.py`  
+- `newtoninterpolation.py`  
+- `voldemort.py`
 
 ---
 
-### 5. Nonlinear Fit / Parameter Estimation
+### 5. Vyhodnocení polynomu
 
-**Clues:**  
-- “Fit a nonlinear model”, e.g. a(p) = am * bp / (1+bp), “estimate model parameters”.
+**Znaky:**  
+- Rychlé vyhodnocení polynomu v daném x.
 
-**Examples:**  
-- “Fit a(p) model to data, estimate am and b.”
-
-**Recommended Methods:**  
-- `NonlinearFit`
+**Doporučené metody:**  
+- `horner.py`  
+- `newtoneval.py`
 
 ---
 
-### 6. Root Finding
+### 6. Aproximace a regrese
 
-**Clues:**  
-- “Find where f(x)=0”, “find intersection”, “where do two curves cross”.
+**Znaky:**  
+- „Best fit“, trend, minimalizace chyb.
 
-**Examples:**  
-- “Find x such that f(x) = 0”, or intersection of two fitted curves.
-
-**Recommended Methods:**  
-- `Bisection`
-- (Newton/Secant if implemented)
+**Doporučené metody:**  
+- `MNC.py`  
+- `MNCsmall.py`
 
 ---
 
-### 7. Practical Decision Table
+### 7. Nelineární regrese
 
-| Problem Type         | Keywords / Signs                   | Use These Methods         |
-|----------------------|------------------------------------|--------------------------|
-| Definite Integral    | ∫, area under curve, “estimate”   | SimpsonRule, MidpointRule, TrapezoidalRule |
-| Linear System        | Ax = b, solve for x               | Gauss, GaussPivot, GaussSeidel, Jacobi     |
-| Interpolation        | through all points, “interpolate” | Lagrange, NewtonInterpolation, Vandermonde |
-| Approximation/Trend  | “Best fit”, regression, trend     | LSA, LSS                 |
-| Nonlinear Fit        | Model with parameters, a(p), etc. | NonlinearFit             |
-| Root/Intersection    | f(x)=0, intersection, “crosses”   | Bisection                |
+**Znaky:**  
+- Fit nelineárního modelu na data.
+
+**Doporučené metody:**  
+- `NLINEARNI_REGRESE.py`
 
 ---
 
-### 8. Quick Decision Flow
+### 8. Hledání kořenů
 
-- **Exact fit through all points?** → Use Interpolation methods.
-- **Best fit/trend (not exact)?** → Use Regression/Approximation.
-- **System of equations?** → Use Linear Solvers.
-- **Integral/area under curve?** → Use Numerical Integration.
-- **Root/intersection/zero?** → Use Root Finding.
-- **Estimate parameters in a nonlinear formula?** → Use NonlinearFit.
+**Znaky:**  
+- Najít x tak, že f(x)=0, průsečíky.
+
+**Doporučené metody:**  
+- `bisekce.py`  
+- `newtonroot.py`
 
 ---
+
+### 9. Řešení ODR
+
+**Znaky:**  
+- Řešení obyčejných diferenciálních rovnic.
+
+**Doporučené metody:**  
+- `euler.py`
+
+---
+
+### 10. Utility a vizualizace
+
+**Znaky:**  
+- Grafy, pomocné matematické funkce.
+
+**Doporučené moduly:**  
+- `graphs.py`  
+- `obecne_operace.py`
