@@ -1,7 +1,7 @@
 # Příprava na zápočet – Numerické metody (NUM)
 
 Repozitář obsahuje implementace numerických metod rozdělené přesně podle kapitol
-v teorii k zápočtu [NUM_TEORIE_ZDENĚK_TOUŠKA.pdf] . Struktura složek odpovídá tematickému členění předmětu.
+v teorii k zápočtu [NUM_TEORIE_ZDENĚK_TOUŠKA.pdf](NUM_TEORIE_ZDENĚK_TOUŠKA.pdf).
 
 ---
 
