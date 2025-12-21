@@ -76,4 +76,4 @@
 - Složky a názvy odpovídají přesně názvům kapitol v PDF
 - Každá metoda je implementována samostatně
 - Složky `__pycache__/` nejsou součástí logiky projektu a lze je mazat
-- Označení _A == AI přepis z officiálních skript do Pythonu.
+- Označení _A == AI přepis z officiálních (https://physics.ujep.cz/~jskvor/NME/skripta/) skript z R do Pythonu.
