@@ -70,3 +70,4 @@ v teorii k zápočtu [NUM_TEORIE_ZDENĚK_TOUŠKA.pdf](NUM_TEORIE_ZDENĚK_TOUŠKA
 - Složky a názvy odpovídají **přesně názvům kapitol v PDF**
 - Každá metoda je implementována samostatně
 - Složky `__pycache__/` nejsou součástí logiky projektu a lze je mazat
+- Označení _A == AI přepis z officiálních skript do Pythonu.
