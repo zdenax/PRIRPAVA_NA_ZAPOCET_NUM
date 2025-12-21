@@ -69,7 +69,7 @@
 - [graphs.py](graphs.py) – pomocné funkce pro vykreslování
 
  
-- [Numericka_derivace_(predni)_A.py](Numericka_derivace_(predni)_A.py) `06_numericka_derivace/`
+- [Numericka_derivace_(predni)_A.py](Numericka_derivace_(predni)_A.py) 
 - [Numericka_derivace_(centralni)_A.py.py](Numericka_derivace_(centralni)_A.py.py) 
 
 ## Poznámky
