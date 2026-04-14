@@ -1,5 +1,8 @@
 import math
-from ..lin_rovnice.gausspivot import gauss_pivot
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '03_soustavy_linearnich_rovnic'))
+from gausspivot import gauss_pivot
 
 def lsa(x, y, n):
     """
@@ -23,7 +26,6 @@ def lsa(x, y, n):
         return None
 
     # Inicializace matice A (n x n) a vektoru b (n)
-    # Odpovídá matrix.NewMatrix(n) a make(vector.Vector2, n)
     A = [[0.0 for _ in range(n)] for _ in range(n)]
     b = [0.0] * n
 
@@ -42,5 +44,5 @@ def lsa(x, y, n):
             s += y[k] * math.pow(x[k], float(i))
         b[i] = s
 
-    # Vyřešení soustavy pomocí dříve definovaného Gausse s pivotací
+    # Vyřešení soustavy pomocí Gausse s pivotací
     return gauss_pivot(A, b)

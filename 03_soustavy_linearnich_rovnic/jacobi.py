@@ -1,5 +1,8 @@
 import math
-from ..obecne_operace import multiply_matrix_vector
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from obecne_operace import multiply_matrix_vector
 
 def jacobi(a, b, max_iter, tol):
     """
@@ -18,7 +21,8 @@ def jacobi(a, b, max_iter, tol):
             sum_val = 0.0
             # Všimni si: používáme výhradně hodnoty z x0
             for j in range(n):
-                sum_val += a[i][j] * x0[j]
+                if j != i:
+                    sum_val += a[i][j] * x0[j]
             
             if a[i][i] == 0:
                 print("Error: Zero diagonal element")
@@ -26,8 +30,7 @@ def jacobi(a, b, max_iter, tol):
             
             # Výpočet nové hodnoty x[i]
             # Vzorec: (b[i] - suma(A[i][j]*x0[j] pro j != i)) / A[i][i]
-            # Tvůj Go kód to dělá šikovně: odečte sumu všech a pak přičte a[i][i]*x0[i]
-            x[i] = (b[i] - sum_val + a[i][i] * x0[i]) / a[i][i]
+            x[i] = (b[i] - sum_val) / a[i][i]
 
         # Aktualizace x0 pro další iteraci (copy v Go)
         x0 = list(x)

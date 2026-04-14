@@ -1,6 +1,9 @@
-from ..lin_rovnice.gausspivot import gauss_pivot
-from ..lin_rovnice.gausssiedel import multiply_matrix_vector
-from ..obecne_operace import transpose, multiply_matrices
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '03_soustavy_linearnich_rovnic'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from gausspivot import gauss_pivot
+from obecne_operace import multiply_matrix_vector, transpose, multiply_matrices
 
 def lss(a, y):
     """
@@ -14,7 +17,7 @@ def lss(a, y):
     ata = multiply_matrices(at, a)
     
     # 3. Součin A^T * y (vytvoří vektor pravé strany)
-    aty = multiply_matrix_vector(at, y) # Funkce definovaná u Jacobiho/Gauss-Seidela
+    aty = multiply_matrix_vector(at, y)
     
     # 4. Vyřešení soustavy (A^T * A) * x = A^T * y pomocí Gausse s pivotací
     return gauss_pivot(ata, aty)

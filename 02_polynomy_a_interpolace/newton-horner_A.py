@@ -26,14 +26,16 @@ def newton_horner(coefs, x0, tol, max_iter):
             return None
     x = x0
     deg = len(coefs) - 1
-    for i in range(max_iter):
+    for iteration in range(max_iter):
         # Hornerovo schéma pro výpočet hodnoty polynomu a jeho derivace
+        # Koeficienty jsou od nejnižší (coefs[0]) po nejvyšší (coefs[deg])
+        # Horner vyhodnocuje od nejvyššího stupně dolů
         p_val = coefs[deg]
         p_der = 0.0
-        for j in range(deg-1, -1, -1):
-            p_der = p_val + x * p_der
-            p_val = coefs[j] + x * p_val
-        # Pozn: Po skončení cyklu p_val = p(x), p_der = p'(x)
+        for j in range(deg - 1, -1, -1):
+            p_der = p_der * x + p_val
+            p_val = p_val * x + coefs[j]
+        # Po skončení cyklu: p_val = p(x), p_der = p'(x)
         if abs(p_der) < 1e-12:
             print("Error: Zero derivative in Newton-Horner method.")
             return None

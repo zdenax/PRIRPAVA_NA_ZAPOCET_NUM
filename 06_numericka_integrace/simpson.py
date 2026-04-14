@@ -28,13 +28,3 @@ def simpson_rule(f, a, b, n):
     # Konečný vzorec: (h/3) * (f(a) + 4*f(x1) + 2*f(x2) + 4*f(x3) + ... + f(b))
     approximation = (h / 3) * total_sum
     return approximation
-
-
-def simpson_rule(f, a, b, n=50):
-    h = (b - a) / (2 * n)
-    s = f(a) + f(b)
-    # liché indexy: 1,3,...,2n-1  -> váha 4; tj. body a+(2k-1)h
-    s += 4 * sum(f(a + (2*k - 1)*h) for k in range(1, n+1))
-    # sudé indexy: 2,4,...,2n-2 -> váha 2; tj. body a+2kh, k=1..n-1
-    s += 2 * sum(f(a + 2*k*h) for k in range(1, n))
-    return s * h / 3

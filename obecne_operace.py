@@ -31,7 +31,10 @@ def build_matrix(N):
     for i in range(N):
         row = []
         for j in range(N):
-            row.append(1 - 1 / (i + j + 1))
+            if i == 0 and j == 0:
+                row.append(0.0)  # i+j+1 = 1, 1 - 1/1 = 0
+            else:
+                row.append(1 - 1 / (i + j + 1))
         A.append(row)
     return A
 
@@ -43,7 +46,6 @@ def build_vector(N):
     return b
 
 
-a = build_matrix(10)
-b = build_vector(10)
-
-
+if __name__ == "__main__":
+    a = build_matrix(10)
+    b = build_vector(10)

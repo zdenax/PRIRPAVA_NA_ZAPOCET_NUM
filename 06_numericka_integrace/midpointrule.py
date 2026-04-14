@@ -23,10 +23,9 @@ def midpoint_rule(f, a, b, n):
     total_sum = 0.0
     
     # Procházíme n podintervalů
-    for i in range(1, n + 1):
+    for i in range(n):
         # Výpočet středu aktuálního obdélníku
-        # a + (h * i) je pravý kraj, odečtením h/2 dostaneme střed
-        midpoint = a + (h * i) - (h / 2)
+        midpoint = a + (i + 0.5) * h
         total_sum += f(midpoint)
     
     # Celkový obsah je šířka krát součet výšek
@@ -34,5 +33,6 @@ def midpoint_rule(f, a, b, n):
     return approximation
 
 # Příklad použití:
-vysledek = midpoint_rule(test_f, 0, math.pi, 100)
-print(f"Integrál je přibližně: {vysledek}")
+if __name__ == "__main__":
+    vysledek = midpoint_rule(test_f, 0, math.pi, 100)
+    print(f"Integrál je přibližně: {vysledek}")
