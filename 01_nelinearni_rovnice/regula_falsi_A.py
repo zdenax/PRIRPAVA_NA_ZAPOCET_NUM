@@ -1,6 +1,9 @@
+import math
+
 def regula_falsi(f, a, b, tol, max_iter):
     """
-    Hledání kořene funkce f(x)=0 pomocí metody regula falsi (metoda falešné polohy).
+    Hledání kořene rovnice f(x)=0 metodou regula falsi (sečnová metoda s intervalem).
+    Rozdíl od bisekce: nový bod c je průsečík sečny, ne střed intervalu.
 
     :param f: Funkce, jejíž kořen hledáme
     :param a: Levá mez intervalu
@@ -12,21 +15,26 @@ def regula_falsi(f, a, b, tol, max_iter):
     fa = f(a)
     fb = f(b)
 
-    # Kontrola, zda v intervalu může být kořen (změna znaménka)
     if fa * fb > 0:
         print("Error: No sign change, can't guarantee a root.")
         return None
 
+    c = a
     for i in range(max_iter):
-        # Výpočet průsečíku sečny s osou x
-        c = (a * fb - b * fa) / (fb - fa)
+        if abs(fb - fa) < 1e-12:
+            print("Error: Zero denominator (f(a) == f(b)).")
+            return None
+
+        c = a - fa * (b - a) / (fb - fa)
         fc = f(c)
 
-        # Kontrola konvergence
+        if math.isnan(fc) or math.isinf(fc):
+            print("Error: Did not converge (NaN/Inf).")
+            return None
+
         if abs(fc) < tol:
             return c
 
-        # Rozhodnutí, kterou část intervalu si ponecháme
         if fa * fc < 0:
             b = c
             fb = fc
@@ -37,6 +45,8 @@ def regula_falsi(f, a, b, tol, max_iter):
     print("Error: Did not converge within max iterations.")
     return None
 
-# Příklad použití:
-# root = regula_falsi(lambda x: x**2 - 4, 0, 5, 1e-6, 100)
-# print(f"Kořen je: {root}")
+
+if __name__ == "__main__":
+    # f(x) = x^2 - 2, kořen = sqrt(2) ≈ 1.41421
+    r = regula_falsi(lambda x: x**2 - 2, 1, 2, 1e-6, 100)
+    print(f"Kořen: {r:.8f}  (referenční: {math.sqrt(2):.8f})")
