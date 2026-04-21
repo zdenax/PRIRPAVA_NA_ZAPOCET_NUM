@@ -1,7 +1,8 @@
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '03_soustavy_linearnich_rovnic'))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+_base = os.path.abspath(os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(_base, '..', '03_soustavy_linearnich_rovnic'))
+sys.path.insert(0, os.path.join(_base, '..'))
 from gausspivot import gauss_pivot
 from obecne_operace import multiply_matrix_vector, transpose, multiply_matrices
 

@@ -1,8 +1,23 @@
 import math
-import sys
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '03_soustavy_linearnich_rovnic'))
-from gausspivot import gauss_pivot
+
+def gauss_pivot(a, b):
+    n = len(b)
+    ab = [list(a[i]) + [b[i]] for i in range(n)]
+    for k in range(n - 1):
+        pivot_row = max(range(k, n), key=lambda r: abs(ab[r][k]))
+        if pivot_row != k:
+            ab[k], ab[pivot_row] = ab[pivot_row], ab[k]
+        for i in range(k + 1, n):
+            if ab[k][k] == 0:
+                return None
+            c = -ab[i][k] / ab[k][k]
+            for j in range(k, n + 1):
+                ab[i][j] += c * ab[k][j]
+    x = [0.0] * n
+    x[n - 1] = ab[n - 1][n] / ab[n - 1][n - 1]
+    for i in range(n - 2, -1, -1):
+        x[i] = (ab[i][n] - sum(ab[i][j] * x[j] for j in range(i + 1, n))) / ab[i][i]
+    return x
 
 def lsa(x, y, n):
     """
