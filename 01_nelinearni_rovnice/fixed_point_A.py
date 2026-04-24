@@ -12,13 +12,13 @@ def fixed_point_iteration(phi, x0, tol, max_iter, verbose=False):
     :return: Odhad pevného bodu nebo None, pokud iterace selže
     """
     if phi is None or x0 is None or tol is None or max_iter is None:
-        print("Error: Nil values are not supported.")
+        print("Chyba: Vstupní hodnoty nesmí být None.")
         return None
     x = x0
     for i in range(max_iter):
         x_new = phi(x)
         if math.isnan(x_new) or math.isinf(x_new):
-            print("Error: Did not converge (diverged to NaN/Inf).")
+            print("Chyba: Metoda divergovala (NaN/Inf).")
             return None
 
         if verbose:
@@ -29,5 +29,5 @@ def fixed_point_iteration(phi, x0, tol, max_iter, verbose=False):
                 print(f"Konvergoval v iteraci {i+1}.")
             return x_new
         x = x_new
-    print("Error: Did not converge within max iterations.")
+    print("Chyba: Metoda neskonvergovala v daném počtu iterací.")
     return None

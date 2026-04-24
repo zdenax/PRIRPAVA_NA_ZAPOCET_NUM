@@ -13,10 +13,10 @@ def runge_kutta_4(f, x0, y0, h, n, verbose=False):
     :return: Seznam bodů (x, y) řešení nebo None při chybě
     """
     if f is None or x0 is None or y0 is None or h is None or n is None:
-        print("Error: Nil values are not supported.")
+        print("Chyba: Vstupní hodnoty nesmí být None.")
         return None
     if n < 0:
-        print("Error: n must be non-negative.")
+        print("Chyba: n musí být nezáporné.")
         return None
     points = [(x0, y0)]
     x = x0
@@ -31,12 +31,12 @@ def runge_kutta_4(f, x0, y0, h, n, verbose=False):
         k3 = f(x + 0.5*h, y + 0.5*h*k2)
         k4 = f(x + h, y + h*k3)
         if any(math.isnan(k) or math.isinf(k) for k in (k1, k2, k3, k4)):
-            print("Error: Function returned NaN or Inf during RK4 computation.")
+            print("Chyba: Funkce vrátila NaN nebo Inf při výpočtu RK4.")
             return None
         y_new = y + (h/6.0) * (k1 + 2*k2 + 2*k3 + k4)
         x_new = x + h
         if math.isnan(y_new) or math.isinf(y_new) or math.isnan(x_new) or math.isinf(x_new):
-            print("Error: RK4 method diverged (NaN or Inf).")
+            print("Chyba: Metoda RK4 divergovala (NaN nebo Inf).")
             return None
         points.append((x_new, y_new))
         x, y = x_new, y_new

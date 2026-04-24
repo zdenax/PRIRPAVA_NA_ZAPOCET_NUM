@@ -10,7 +10,7 @@ def simpson_rule(f, a, b, n):
     """
     # Simpson vyžaduje sudý počet intervalů (n+1 bodů)
     if n < 2 or n % 2 != 0:
-        print("Error: Unsupported value for n. Must be even and >= 2.")
+        print("Chyba: n musí být sudé a >= 2.")
         return None
 
     h = (b - a) / n

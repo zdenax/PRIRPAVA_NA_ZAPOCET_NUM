@@ -14,7 +14,7 @@ def gauss_seidel(a, b, max_iter, tol, verbose=False):
     """
     n = len(a)
     if n != len(b) or any(len(row) != n for row in a):
-        print("Error: Mismatched lengths")
+        print("Chyba: Nesouhlasí délky vstupních dat.")
         return None
 
     x = [0.0] * n
@@ -24,7 +24,7 @@ def gauss_seidel(a, b, max_iter, tol, verbose=False):
 
         for i in range(n):
             if abs(a[i][i]) < 1e-12:
-                print("Error: Zero diagonal element")
+                print("Chyba: Nulový diagonální prvek.")
                 return None
             sum_val = 0.0
             for j in range(n):
@@ -35,7 +35,7 @@ def gauss_seidel(a, b, max_iter, tol, verbose=False):
         diff = max(abs(x[i] - x_prev[i]) for i in range(n))
 
         if any(math.isnan(v) or math.isinf(v) for v in x):
-            print("Error: Did not converge")
+            print("Chyba: Metoda neskonvergovala.")
             return None
 
         if verbose:
@@ -46,7 +46,7 @@ def gauss_seidel(a, b, max_iter, tol, verbose=False):
                 print(f"Konvergoval v iteraci {k+1}.")
             return x
 
-    print("Error: Did not converge")
+    print("Chyba: Metoda neskonvergovala.")
     return None
 
 

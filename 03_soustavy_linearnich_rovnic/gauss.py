@@ -10,7 +10,7 @@ def gauss(a, b):
     
     # Kontrola rozměrů (čtvercová matice)
     if n != len(a) or any(len(row) != n for row in a):
-        print("Error: Mismatched lengths")
+        print("Chyba: Nesouhlasí délky vstupních dat.")
         return None
 
     # Vytvoření rozšířené matice (Bind v Go)

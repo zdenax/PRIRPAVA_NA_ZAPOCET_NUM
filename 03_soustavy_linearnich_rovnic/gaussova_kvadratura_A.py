@@ -11,12 +11,12 @@ def gauss_quadrature(f, a, b, n):
     """
     import math
     if f is None or a is None or b is None or n is None:
-        print("Error: Nil values are not supported.")
+        print("Chyba: Vstupní hodnoty nesmí být None.")
         return None
     if a == b:
         return 0.0
     if a > b:
-        print("Error: a must be less than b.")
+        print("Chyba: a musí být menší než b.")
         return None
     if n == 2:
         nodes = [-math.sqrt(1/3), math.sqrt(1/3)]
@@ -25,7 +25,7 @@ def gauss_quadrature(f, a, b, n):
         nodes = [-math.sqrt(3/5), 0.0, math.sqrt(3/5)]
         weights = [5/9, 8/9, 5/9]
     else:
-        print("Error: Unsupported number of nodes (use 2 or 3).")
+        print("Chyba: Nepodporovaný počet uzlů (použij 2 nebo 3).")
         return None
     m = 0.5 * (a + b)
     half_len = 0.5 * (b - a)
@@ -34,11 +34,11 @@ def gauss_quadrature(f, a, b, n):
         xi = m + half_len * nodes[i]
         fxi = f(xi)
         if math.isnan(fxi) or math.isinf(fxi):
-            print("Error: Function returned NaN or Inf.")
+            print("Chyba: Funkce vrátila NaN nebo Inf.")
             return None
         result += weights[i] * fxi
     result *= half_len
     if math.isnan(result) or math.isinf(result):
-        print("Error: Integration failed (result is NaN/Inf).")
+        print("Chyba: Integrace selhala (výsledek je NaN/Inf).")
         return None
     return result

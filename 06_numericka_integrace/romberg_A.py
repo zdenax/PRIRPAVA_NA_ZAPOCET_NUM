@@ -13,19 +13,19 @@ def romberg_quadrature(f, a, b, tol, max_iter, verbose=False):
     :return: Odhad integrálu na [a, b] nebo None při selhání
     """
     if f is None or a is None or b is None or tol is None or max_iter is None:
-        print("Error: Nil values are not supported.")
+        print("Chyba: Vstupní hodnoty nesmí být None.")
         return None
     if a == b:
         return 0.0
     if a > b:
-        print("Error: a must be less than b.")
+        print("Chyba: a musí být menší než b.")
         return None
     R = []
     h = (b - a)
     fa = f(a)
     fb = f(b)
     if math.isnan(fa) or math.isinf(fa) or math.isnan(fb) or math.isinf(fb):
-        print("Error: Function returned NaN or Inf.")
+        print("Chyba: Funkce vrátila NaN nebo Inf.")
         return None
     R.append([0.5 * h * (fa + fb)])
     if verbose:
@@ -38,7 +38,7 @@ def romberg_quadrature(f, a, b, tol, max_iter, verbose=False):
             x_mid = a + i * h
             fxm = f(x_mid)
             if math.isnan(fxm) or math.isinf(fxm):
-                print("Error: Function returned NaN or Inf.")
+                print("Chyba: Funkce vrátila NaN nebo Inf.")
                 return None
             sum_new += fxm
         R_k0 = 0.5 * R[k-1][0] + h * sum_new
@@ -52,5 +52,5 @@ def romberg_quadrature(f, a, b, tol, max_iter, verbose=False):
             if verbose:
                 print(f"Konvergoval na úrovni {k}.")
             return R[k][k]
-    print("Error: Did not converge within max iterations.")
+    print("Chyba: Metoda neskonvergovala v daném počtu iterací.")
     return None

@@ -29,15 +29,15 @@ def lsa(x, y, n):
     :return: Koeficienty polynomu [a0, a1, ..., an-1]
     """
     if len(x) == 0 or len(y) == 0:
-        print("Error: Nil values are not supported.")
+        print("Chyba: Vstupní hodnoty nesmí být None.")
         return None
 
     if len(x) != len(y):
-        print("Error: Mismatched lengths of X and Y.")
+        print("Chyba: Nesouhlasí délky X a Y.")
         return None
 
     if n <= 0:
-        print("Error: Unsupported value for n.")
+        print("Chyba: Nepodporovaná hodnota n.")
         return None
 
     # Inicializace matice A (n x n) a vektoru b (n)

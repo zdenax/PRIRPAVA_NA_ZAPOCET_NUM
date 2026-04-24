@@ -14,7 +14,7 @@ def halley(f, f_prime, f_double, x0, tol, max_iter, verbose=False):
     :return: Odhad kořene nebo None při selhání metody
     """
     if f is None or f_prime is None or f_double is None or x0 is None or tol is None or max_iter is None:
-        print("Error: Nil values are not supported.")
+        print("Chyba: Vstupní hodnoty nesmí být None.")
         return None
     x = x0
     for i in range(max_iter):
@@ -23,11 +23,11 @@ def halley(f, f_prime, f_double, x0, tol, max_iter, verbose=False):
         fdpx = f_double(x)
         denominator = 2 * (fpx ** 2) - fx * fdpx
         if abs(denominator) < 1e-12:
-            print("Error: Zero denominator in Halley method.")
+            print("Chyba: Nulový jmenovatel v Halleyho metodě.")
             return None
         x_new = x - (2 * fx * fpx) / denominator
         if math.isnan(x_new) or math.isinf(x_new):
-            print("Error: Did not converge (diverged to NaN/Inf).")
+            print("Chyba: Metoda divergovala (NaN/Inf).")
             return None
 
         if verbose:
@@ -38,5 +38,5 @@ def halley(f, f_prime, f_double, x0, tol, max_iter, verbose=False):
                 print(f"Konvergoval v iteraci {i+1}.")
             return x_new
         x = x_new
-    print("Error: Did not converge within max iterations.")
+    print("Chyba: Metoda neskonvergovala v daném počtu iterací.")
     return None

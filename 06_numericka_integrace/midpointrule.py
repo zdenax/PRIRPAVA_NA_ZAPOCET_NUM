@@ -15,7 +15,7 @@ def midpoint_rule(f, a, b, n):
     :return: Přibližná hodnota integrálu
     """
     if n < 1:
-        print("Error: Unsupported value for n. Must be n >= 1.")
+        print("Chyba: n musí být >= 1.")
         return None
 
     # Šířka jednoho obdélníku

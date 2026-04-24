@@ -8,7 +8,7 @@ def gauss_pivot(a, b):
     """
     n = len(b)
     if n != len(a) or any(len(row) != n for row in a):
-        print("Error: Mismatched lengths")
+        print("Chyba: Nesouhlasí délky vstupních dat.")
         return None
 
     # Vytvoření rozšířené matice (Bind)
@@ -34,7 +34,7 @@ def gauss_pivot(a, b):
         for i in range(k + 1, n):
             # Pokud by i po prohození byla na diagonále nula, soustava nemá jedno řešení
             if ab[k][k] == 0:
-                print("Error: Matrix is singular")
+                print("Chyba: Matice je singulární.")
                 return None
                 
             c = -ab[i][k] / ab[k][k]

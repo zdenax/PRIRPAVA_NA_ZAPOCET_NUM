@@ -11,7 +11,7 @@ def euler_step(f, x0, y0, h, n, verbose=False):
     :return: Pole hodnot y (vektor)
     """
     if n < 1:
-        print("Error: Number of steps n must be >= 1.")
+        print("Chyba: Počet kroků n musí být >= 1.")
         return None
 
     ys = [0.0] * (n + 1)

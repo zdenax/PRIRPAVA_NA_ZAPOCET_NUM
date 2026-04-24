@@ -12,11 +12,11 @@ def linear_interpolation(x_vals, y_vals, t):
     :return: Interpolovaná hodnota (nebo seznam hodnot) nebo None při chybě
     """
     if x_vals is None or y_vals is None or t is None:
-        print("Error: Nil values are not supported.")
+        print("Chyba: Vstupní hodnoty nesmí být None.")
         return None
     n = len(x_vals)
     if n == 0 or n != len(y_vals):
-        print("Error: Mismatched lengths of input lists.")
+        print("Chyba: Nesouhlasí délky vstupních seznamů.")
         return None
     # Pokud t není seznam, zabalíme ho do seznamu pro jednotné zpracování
     t_list = t if isinstance(t, list) else [t]
@@ -25,7 +25,7 @@ def linear_interpolation(x_vals, y_vals, t):
     # Kontrola, zda všechny body t jsou v rozsahu [x_min, x_max]
     for val in t_list:
         if val < x_min or val > x_max:
-            print("Error: Interpolation point out of range.")
+            print("Chyba: Bod interpolace je mimo rozsah.")
             return None
     result = []
     for val in t_list:
@@ -46,7 +46,7 @@ def linear_interpolation(x_vals, y_vals, t):
                 interpolated_val = y_vals[-1]
             else:
                 # Mimo rozsah (nemělo by nastat díky kontrole výše)
-                print("Error: Interpolation point out of range.")
+                print("Chyba: Bod interpolace je mimo rozsah.")
                 return None
         result.append(interpolated_val)
     # Pokud vstup nebyl seznam, vracíme skalární hodnotu místo seznamu

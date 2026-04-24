@@ -17,7 +17,7 @@ def jacobi(a, b, max_iter, tol, verbose=False):
     """
     n = len(a)
     if n != len(b) or any(len(row) != n for row in a):
-        print("Error: Mismatched lengths")
+        print("Chyba: Nesouhlasí délky vstupních dat.")
         return None
 
     x  = [0.0] * n
@@ -30,7 +30,7 @@ def jacobi(a, b, max_iter, tol, verbose=False):
                 if j != i:
                     sum_val += a[i][j] * x0[j]
             if a[i][i] == 0:
-                print("Error: Zero diagonal element")
+                print("Chyba: Nulový diagonální prvek.")
                 return None
             x[i] = (b[i] - sum_val) / a[i][i]
 
@@ -38,7 +38,7 @@ def jacobi(a, b, max_iter, tol, verbose=False):
         ax = multiply_matrix_vector(a, x0)
 
         if any(math.isnan(v) or math.isinf(v) for v in ax):
-            print("Error: Did not converge")
+            print("Chyba: Metoda neskonvergovala.")
             return None
 
         diff_sum = sum(abs(ax[i] - b[i]) for i in range(n))
@@ -51,5 +51,5 @@ def jacobi(a, b, max_iter, tol, verbose=False):
                 print(f"Konvergoval v iteraci {k+1}.")
             return x0
 
-    print("Error: Did not converge")
+    print("Chyba: Metoda neskonvergovala.")
     return None

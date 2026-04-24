@@ -14,7 +14,7 @@ def bisection(f, a, b, tol, max_iter, verbose=False):
     fb = f(b)
 
     if fa * fb > 0:
-        print("Error: No sign change, can't guarantee a root.")
+        print("Chyba: Žádná změna znaménka, kořen v intervalu nelze zaručit.")
         return None
 
     c = a
@@ -37,7 +37,7 @@ def bisection(f, a, b, tol, max_iter, verbose=False):
             a = c
             fa = fc
 
-    print("Error: Did not converge.")
+    print("Chyba: Metoda neskonvergovala.")
     return None
 
 # Příklad použití:

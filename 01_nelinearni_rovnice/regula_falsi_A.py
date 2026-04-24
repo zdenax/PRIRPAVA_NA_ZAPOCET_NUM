@@ -17,20 +17,20 @@ def regula_falsi(f, a, b, tol, max_iter, verbose=False):
     fb = f(b)
 
     if fa * fb > 0:
-        print("Error: No sign change, can't guarantee a root.")
+        print("Chyba: Žádná změna znaménka, kořen v intervalu nelze zaručit.")
         return None
 
     c = a
     for i in range(max_iter):
         if abs(fb - fa) < 1e-12:
-            print("Error: Zero denominator (f(a) == f(b)).")
+            print("Chyba: Nulový jmenovatel (f(a) == f(b)).")
             return None
 
         c = a - fa * (b - a) / (fb - fa)
         fc = f(c)
 
         if math.isnan(fc) or math.isinf(fc):
-            print("Error: Did not converge (NaN/Inf).")
+            print("Chyba: Metoda divergovala (NaN/Inf).")
             return None
 
         if verbose:
@@ -48,7 +48,7 @@ def regula_falsi(f, a, b, tol, max_iter, verbose=False):
             a = c
             fa = fc
 
-    print("Error: Did not converge within max iterations.")
+    print("Chyba: Metoda neskonvergovala v daném počtu iterací.")
     return None
 
 

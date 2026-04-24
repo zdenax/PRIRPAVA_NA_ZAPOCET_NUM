@@ -12,16 +12,16 @@ def newton_horner(coefs, x0, tol, max_iter, verbose=False):
     :return: Odhad kořene polynomu nebo None při selhání metody
     """
     if coefs is None or x0 is None or tol is None or max_iter is None:
-        print("Error: Nil values are not supported.")
+        print("Chyba: Vstupní hodnoty nesmí být None.")
         return None
     if len(coefs) == 0:
-        print("Error: Nil values are not supported.")
+        print("Chyba: Vstupní hodnoty nesmí být None.")
         return None
     if len(coefs) == 1:
         if abs(coefs[0]) < 1e-12:
             return x0
         else:
-            print("Error: Constant polynomial has no root.")
+            print("Chyba: Konstantní polynom nemá kořen.")
             return None
     x = x0
     deg = len(coefs) - 1
@@ -32,11 +32,11 @@ def newton_horner(coefs, x0, tol, max_iter, verbose=False):
             p_der = p_der * x + p_val
             p_val = p_val * x + coefs[j]
         if abs(p_der) < 1e-12:
-            print("Error: Zero derivative in Newton-Horner method.")
+            print("Chyba: Nulová derivace v metodě Newton-Horner.")
             return None
         x_new = x - p_val / p_der
         if math.isnan(x_new) or math.isinf(x_new):
-            print("Error: Did not converge (diverged to NaN/Inf).")
+            print("Chyba: Metoda divergovala (NaN/Inf).")
             return None
 
         if verbose:
@@ -47,5 +47,5 @@ def newton_horner(coefs, x0, tol, max_iter, verbose=False):
                 print(f"Konvergoval v iteraci {iteration+1}.")
             return x_new
         x = x_new
-    print("Error: Did not converge within max iterations.")
+    print("Chyba: Metoda neskonvergovala v daném počtu iterací.")
     return None

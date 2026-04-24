@@ -16,7 +16,7 @@ def newton(f, fd, x0, tol, max_iter, verbose=False):
         fdx = fd(x)
 
         if abs(fdx) < 1e-12:
-            print("Error: Zero derivative, metoda selhala.")
+            print("Chyba: Nulová derivace, metoda selhala.")
             return None
 
         x_new = x - fx / fdx

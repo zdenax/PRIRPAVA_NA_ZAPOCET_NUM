@@ -9,7 +9,7 @@ def gauss_lu(a, b):
     """
     n = len(b)
     if n != len(a) or any(len(row) != n for row in a):
-        print("Error: Mismatched lengths")
+        print("Chyba: Nesouhlasí délky vstupních dat.")
         return None
 
     # Inicializace L (jednotková) a U (kopie A)
@@ -19,7 +19,7 @@ def gauss_lu(a, b):
     # LU rozklad (Doolittleova metoda)
     for k in range(n):
         if abs(U[k][k]) < 1e-12:
-            print("Error: Zero pivot - matice je singulární nebo je nutná pivotace")
+            print("Chyba: Nulový pivot — matice je singulární nebo je nutná pivotace.")
             return None
         for i in range(k + 1, n):
             L[i][k] = U[i][k] / U[k][k]
