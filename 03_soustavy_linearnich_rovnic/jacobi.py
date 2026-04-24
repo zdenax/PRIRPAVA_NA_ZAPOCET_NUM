@@ -1,7 +1,10 @@
 import math
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+try:
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+except NameError:
+    pass  # spuštění přímo v notebooku — BASE už je na sys.path
 from obecne_operace import multiply_matrix_vector
 
 def jacobi(a, b, max_iter, tol, verbose=False):
