@@ -2,6 +2,10 @@ def gauss_lu(a, b):
     """
     Řešení soustavy Ax = b pomocí LU rozkladu (bez pivotace).
     Rozloží matici A = L * U, pak řeší Ly = b a Ux = y.
+
+    :param a: Matice soustavy (seznam seznamů, čtvercová n×n)
+    :param b: Vektor pravé strany (délka n)
+    :return: Vektor řešení x nebo None při selhání
     """
     n = len(b)
     if n != len(a) or any(len(row) != n for row in a):

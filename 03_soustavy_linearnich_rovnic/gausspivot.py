@@ -1,6 +1,10 @@
 def gauss_pivot(a, b):
     """
     Řešení soustavy Ax = b pomocí Gaussovy eliminace s částečnou pivotací.
+
+    :param a: Matice soustavy (seznam seznamů, čtvercová n×n)
+    :param b: Vektor pravé strany (délka n)
+    :return: Vektor řešení x nebo None při selhání
     """
     n = len(b)
     if n != len(a) or any(len(row) != n for row in a):

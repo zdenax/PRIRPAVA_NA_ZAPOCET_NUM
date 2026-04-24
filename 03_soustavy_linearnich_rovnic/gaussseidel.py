@@ -4,6 +4,12 @@ def gauss_seidel(a, b, max_iter, tol):
     """
     Řešení soustavy Ax = b pomocí Gauss-Seidelovy iterativní metody.
     Rozdíl oproti Jacobimu: nové hodnoty x[i] se používají ihned v téže iteraci.
+
+    :param a: Matice soustavy (seznam seznamů, čtvercová n×n)
+    :param b: Vektor pravé strany (délka n)
+    :param max_iter: Maximální počet iterací
+    :param tol: Tolerance konvergence
+    :return: Vektor řešení x nebo None při selhání
     """
     n = len(a)
     if n != len(b) or any(len(row) != n for row in a):

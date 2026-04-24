@@ -7,6 +7,12 @@ from obecne_operace import multiply_matrix_vector
 def jacobi(a, b, max_iter, tol):
     """
     Řešení soustavy Ax = b pomocí Jacobiho iterativní metody.
+
+    :param a: Matice soustavy (seznam seznamů, čtvercová n×n)
+    :param b: Vektor pravé strany (délka n)
+    :param max_iter: Maximální počet iterací
+    :param tol: Tolerance konvergence (reziduální norma)
+    :return: Vektor řešení x nebo None při selhání
     """
     n = len(a)
     if n != len(b) or any(len(row) != n for row in a):

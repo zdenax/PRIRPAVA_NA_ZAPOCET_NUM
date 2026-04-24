@@ -1,6 +1,10 @@
 def gauss(a, b):
     """
     Řešení soustavy lineárních rovnic Ax = b pomocí Gaussovy eliminace.
+
+    :param a: Matice soustavy (seznam seznamů, čtvercová n×n)
+    :param b: Vektor pravé strany (délka n)
+    :return: Vektor řešení x nebo None při selhání
     """
     n = len(b)
     

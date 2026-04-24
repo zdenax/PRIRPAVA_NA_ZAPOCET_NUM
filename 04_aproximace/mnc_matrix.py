@@ -10,6 +10,10 @@ def lss(a, y):
     """
     Řeší problém nejmenších čtverců pro soustavu Ax = y.
     Vrací vektor x, který minimalizuje ||Ax - y||^2.
+
+    :param a: Matice soustavy (seznam seznamů, m×n)
+    :param y: Vektor pravé strany (délka m)
+    :return: Vektor řešení x (délka n) nebo None při selhání
     """
     # 1. Transpozice matice A -> A^T
     at = transpose(a)

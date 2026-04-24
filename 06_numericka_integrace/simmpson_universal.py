@@ -1,6 +1,10 @@
 def simpson(y, h):
     """
     Simpsonovo pravidlo nad hodnotami y v ekvidistantních uzlech.
+
+    :param y: Seznam hodnot funkce v ekvidistantních uzlech (délka n+1, n musí být sudé)
+    :param h: Délka kroku mezi uzly
+    :return: Přibližná hodnota integrálu
     """
     n = len(y) - 1
     if n < 2 or n % 2 != 0:
