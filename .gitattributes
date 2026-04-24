@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Python bytecode - binary, no line ending processing
+*.pyc binary
+*.pyo binary
