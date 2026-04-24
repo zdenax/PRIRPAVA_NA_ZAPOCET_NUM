@@ -1,10 +1,6 @@
+import math
 
-
-
-
-
-
-def romberg_quadrature(f, a, b, tol, max_iter):
+def romberg_quadrature(f, a, b, tol, max_iter, verbose=False):
     """
     Numerická integrace pomocí Rombergovy metody.
 
@@ -13,9 +9,9 @@ def romberg_quadrature(f, a, b, tol, max_iter):
     :param b: Horní mez integrace
     :param tol: Tolerance požadované přesnosti
     :param max_iter: Maximální počet iterací (hloubka extrapolace)
+    :param verbose: Vypisovat průběh iterací (default False)
     :return: Odhad integrálu na [a, b] nebo None při selhání
     """
-    import math
     if f is None or a is None or b is None or tol is None or max_iter is None:
         print("Error: Nil values are not supported.")
         return None
@@ -32,10 +28,11 @@ def romberg_quadrature(f, a, b, tol, max_iter):
         print("Error: Function returned NaN or Inf.")
         return None
     R.append([0.5 * h * (fa + fb)])
+    if verbose:
+        print(f"Úroveň  0: R[0][0] = {R[0][0]:.10f}")
     for k in range(1, max_iter):
         h /= 2.0
         sum_new = 0.0
-        # Přidání nových bodů: 2^(k-1) nových uzlů
         num_new = 2 ** (k - 1)
         for i in range(1, 2 * num_new, 2):
             x_mid = a + i * h
@@ -49,7 +46,11 @@ def romberg_quadrature(f, a, b, tol, max_iter):
         for j in range(1, k + 1):
             R_kj = R[k][j-1] + (R[k][j-1] - R[k-1][j-1]) / (4**j - 1)
             R[k].append(R_kj)
+        if verbose:
+            print(f"Úroveň {k:2d}: R[k][k] = {R[k][k]:.10f}, změna = {abs(R[k][k] - R[k-1][k-1]):.4e}")
         if abs(R[k][k] - R[k-1][k-1]) < tol:
+            if verbose:
+                print(f"Konvergoval na úrovni {k}.")
             return R[k][k]
     print("Error: Did not converge within max iterations.")
     return None

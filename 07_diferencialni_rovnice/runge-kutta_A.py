@@ -1,5 +1,6 @@
+import math
 
-def runge_kutta_4(f, x0, y0, h, n):
+def runge_kutta_4(f, x0, y0, h, n, verbose=False):
     """
     Řešení obyčejné diferenciální rovnice y' = f(x, y) pomocí Runge-Kutta 4. řádu.
 
@@ -8,9 +9,9 @@ def runge_kutta_4(f, x0, y0, h, n):
     :param y0: Počáteční hodnota y pro x0
     :param h: Krok integrace
     :param n: Počet kroků (iterací) metody
+    :param verbose: Vypisovat průběh kroků (default False)
     :return: Seznam bodů (x, y) řešení nebo None při chybě
     """
-    import math
     if f is None or x0 is None or y0 is None or h is None or n is None:
         print("Error: Nil values are not supported.")
         return None
@@ -20,6 +21,10 @@ def runge_kutta_4(f, x0, y0, h, n):
     points = [(x0, y0)]
     x = x0
     y = y0
+
+    if verbose:
+        print(f"Krok   0: x = {x:.4f}, y = {y:.10f}")
+
     for i in range(n):
         k1 = f(x, y)
         k2 = f(x + 0.5*h, y + 0.5*h*k1)
@@ -35,4 +40,7 @@ def runge_kutta_4(f, x0, y0, h, n):
             return None
         points.append((x_new, y_new))
         x, y = x_new, y_new
+        if verbose:
+            print(f"Krok {i+1:3d}: x = {x:.4f}, y = {y:.10f}, k1={k1:.4f} k2={k2:.4f} k3={k3:.4f} k4={k4:.4f}")
+
     return points

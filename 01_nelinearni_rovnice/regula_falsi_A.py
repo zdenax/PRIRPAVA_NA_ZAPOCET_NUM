@@ -1,6 +1,6 @@
 import math
 
-def regula_falsi(f, a, b, tol, max_iter):
+def regula_falsi(f, a, b, tol, max_iter, verbose=False):
     """
     Hledání kořene rovnice f(x)=0 metodou regula falsi (sečnová metoda s intervalem).
     Rozdíl od bisekce: nový bod c je průsečík sečny, ne střed intervalu.
@@ -10,6 +10,7 @@ def regula_falsi(f, a, b, tol, max_iter):
     :param b: Pravá mez intervalu
     :param tol: Tolerance (přesnost)
     :param max_iter: Maximální počet iterací
+    :param verbose: Vypisovat průběh iterací (default False)
     :return: Odhad kořene nebo None při selhání metody
     """
     fa = f(a)
@@ -32,7 +33,12 @@ def regula_falsi(f, a, b, tol, max_iter):
             print("Error: Did not converge (NaN/Inf).")
             return None
 
+        if verbose:
+            print(f"Iterace {i+1:3d}: c = {c:.10f}, f(c) = {fc:.4e}")
+
         if abs(fc) < tol:
+            if verbose:
+                print(f"Konvergoval v iteraci {i+1}.")
             return c
 
         if fa * fc < 0:
@@ -47,6 +53,5 @@ def regula_falsi(f, a, b, tol, max_iter):
 
 
 if __name__ == "__main__":
-    # f(x) = x^2 - 2, kořen = sqrt(2) ≈ 1.41421
     r = regula_falsi(lambda x: x**2 - 2, 1, 2, 1e-6, 100)
     print(f"Kořen: {r:.8f}  (referenční: {math.sqrt(2):.8f})")
