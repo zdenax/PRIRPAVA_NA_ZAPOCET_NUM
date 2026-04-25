@@ -22,10 +22,24 @@ def gauss_pivot(a, b):
 def lsa(x, y, n):
     """
     Aproximace dat polynomem stupně (n-1) pomocí metody nejmenších čtverců.
-    
+
+    n=2 → lineární:
+        koefs = lsa(x, y, 2)
+        y_pred = koefs[0] + koefs[1]*x
+
+    n=3 → kvadratický:
+        koefs = lsa(x, y, 3)
+        y_pred = koefs[0] + koefs[1]*x + koefs[2]*x**2
+
+    n=4 → kubický:
+        koefs = lsa(x, y, 4)
+        y_pred = koefs[0] + koefs[1]*x + koefs[2]*x**2 + koefs[3]*x**3
+
+    Obecně: y_pred = sum(koefs[i] * x**i for i in range(len(koefs)))
+
     :param x: Vstupní data (nezávislá proměnná)
     :param y: Naměřené hodnoty (závislá proměnná)
-    :param n: Počet koeficientů polynomu (stupeň + 1)
+    :param n: Počet koeficientů (stupeň + 1)
     :return: Koeficienty polynomu [a0, a1, ..., an-1]
     """
     if len(x) == 0 or len(y) == 0:
