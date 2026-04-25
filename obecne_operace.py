@@ -27,6 +27,13 @@ def multiply_matrices(a, b):
 
 
 def build_matrix(N):
+    """
+    Sestaví matici A (N×N) kde A[i][j] = 1 - 1/(i+j+1).
+    Výjimka: A[0][0] = 0 (i+j+1=1, výsledek 1-1/1=0).
+
+    :param N: Rozměr matice
+    :return: Matice A jako seznam seznamů
+    """
     A = []
     for i in range(N):
         row = []
@@ -40,6 +47,12 @@ def build_matrix(N):
 
 
 def build_vector(N):
+    """
+    Sestaví vektor b délky N, kde každý prvek = 1.
+
+    :param N: Délka vektoru
+    :return: Vektor b jako seznam
+    """
     b = []
     for _ in range(N):
         b.append(1)
