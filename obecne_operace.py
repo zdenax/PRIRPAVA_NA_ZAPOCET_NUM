@@ -25,6 +25,45 @@ def multiply_matrices(a, b):
 
 #stavět matici A a vektor b.
 
+def build_matrix(N, funkce, integrator):
+    """
+    Sestaví matici A (N×N) kde A[i][j] = integrator(funkce(t, i, j)).
+
+    :param N: Rozměr matice
+    :param funkce: Funkce tvaru f(t, i, j) — integrand pro prvek A[i][j], vzorec ze zadání
+    :param integrator: Funkce tvaru g(f) -> float — libovolná numerická integrace
+    :return: Matice A jako seznam seznamů
+    """
+    A = []
+    for i in range(N):
+        row = []
+        for j in range(N):
+            f = lambda t, i=i, j=j: funkce(t, i, j)
+            row.append(integrator(f))
+        A.append(row)
+    return A
+
+# Použití — vzorec ze zadání dosadíš do lambda t, i, j: <vzorec ze zadání>
+A = build_matrix(
+    N,
+    lambda t, i, j: t**(i+j),        # <-- vzorec ze zadání
+    lambda f: simpson_rule(f, 0, 1, 100)
+)
+
+def build_vector(N, A):
+    """
+    Sestaví vektor b délky N, kde každý prvek = součet řádku matice A.
+    b[i] = sum(A[i]) — vzorec ze zadání
+
+    :param N: Délka vektoru
+    :param A: Matice A jako seznam seznamů
+    :return: Vektor b jako seznam
+    """
+    return [sum(A[i]) for i in range(N)]
+
+
+
+
 
 def build_matrix(N):
     """
@@ -44,6 +83,9 @@ def build_matrix(N):
                 row.append(1 - 1 / (i + j + 1))
         A.append(row)
     return A
+
+
+
 
 
 def build_vector(N):
