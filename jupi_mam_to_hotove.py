@@ -1,0 +1,1 @@
+print("JUPI! MAM TO HOTOVE! ZAPOCET DONE! 🎉")
